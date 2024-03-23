@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.daeddongadmin.address.repository.AddressRepository">
-	<select id="getSiGunguList" parameterType="java.util.HashMap" resultType="kr.co.daeddongadmin.address.domain.Address">
+<mapper namespace="kr.co.daeddongclient.address.repository.AddressRepository">
+	<select id="getSidoList" parameterType="java.util.HashMap" resultType="kr.co.daeddongclient.address.domain.Address">
+		select SI from 120BPM_TOILET group by SI order by GUNGU asc;
+	</select>
+	<select id="getSiGunguList" parameterType="java.util.HashMap" resultType="kr.co.daeddongclient.address.domain.Address">
 		select GUNGU from 120BPM_TOILET group by GUNGU order by GUNGU asc;
 	</select>
 </mapper>

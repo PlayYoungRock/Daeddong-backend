@@ -1,7 +1,7 @@
 # Read Me First
 The following was discovered as part of building this project:
 
-* The original package name 'kr.co.daeddong-admin' is invalid and this project uses 'kr.co.daeddongadmin' instead.
+* The original package name 'kr.co.daeddong-admin' is invalid and this project uses 'kr.co.daeddongclient' instead.
 
 # Getting Started
 
