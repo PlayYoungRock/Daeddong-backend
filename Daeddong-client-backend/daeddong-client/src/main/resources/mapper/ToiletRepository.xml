@@ -56,7 +56,7 @@
 		</where>
 	</select>
 
-	<select id="getToiletInfo" parameterType="java.util.HashMap" resultType="kr.co.daeddongadmin.toilet.domain.Toilet">
+	<select id="getToiletInfo" parameterType="java.util.HashMap" resultType="kr.co.daeddongclient.toilet.domain.Toilet">
 		SELECT SEQ,
 			   NAME,
 			   LATITIUDE,

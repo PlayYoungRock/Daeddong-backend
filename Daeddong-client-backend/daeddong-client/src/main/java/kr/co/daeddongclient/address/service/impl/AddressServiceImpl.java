@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +18,13 @@ public class AddressServiceImpl implements AddressService {
 	private AddressRepository addressRepository;
 
 	@Override
-	public List<Address> getSido(Map<String,Object> paramMap) {
-		return addressRepository.getSido(paramMap);
+	public List<Address> getSidoList(Map<String,Object> paramMap) {
+		return addressRepository.getSidoList(paramMap);
 	}
 	@Override
-	public List<Address> getSiGunguList(Map<String,Object> paramMap) {
+	public List<Address> getSiGunguList(String sido) {
+		Map<String,Object> paramMap = new HashMap<>();
+		paramMap.put("sido",sido);
 		return addressRepository.getSiGunguList(paramMap);
 	}
 

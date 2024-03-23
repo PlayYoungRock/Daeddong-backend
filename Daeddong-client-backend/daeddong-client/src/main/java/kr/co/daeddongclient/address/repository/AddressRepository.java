@@ -8,6 +8,6 @@ import java.util.Map;
 
 @Mapper
 public interface AddressRepository {
-    List<Address> getSido(Map<String,Object> paramMap);
+    List<Address> getSidoList(Map<String,Object> paramMap);
     List<Address> getSiGunguList(Map<String,Object> paramMap);
 }

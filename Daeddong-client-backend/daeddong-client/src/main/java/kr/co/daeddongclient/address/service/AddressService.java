@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface AddressService {
     public List<Address> getSidoList(Map<String, Object> paramMap);
-    public List<Address> getSiGunguList(Map<String, Object> paramMap);
+    public List<Address> getSiGunguList(String sido);
 
 }
