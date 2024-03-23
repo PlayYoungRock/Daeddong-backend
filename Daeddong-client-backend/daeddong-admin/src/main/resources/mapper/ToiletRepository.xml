@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.daeddongadmin.toilet.repository.ToiletRepository">
+	<select id="getToiletList" parameterType="java.util.HashMap" resultType="kr.co.daeddongadmin.toilet.domain.Toilet">
+		SELECT SEQ,
+		       NAME,
+		       LATITIUDE,
+		       LONGITUDE,
+		       ADDRESS,
+		       SI,
+		       GUNGU,
+		       FLOOR,
+		       OPEN_TIME,
+		       CLOSE_TIME,
+		       REG_DT,
+		       MOD_DT,
+		       MANAGE_AGENCY,
+		       MA_NUM,
+		       TOILET_TYPE,
+		       COUNT_MAN,
+		       COUNT_WOMEN,
+		       BABY_YN,
+		       UNUSUAL_YN,
+		       CCTV_YN,
+		       ALARM_YN,
+		       PWD_YN,
+		       PWD,
+		       ETC,
+		       REG_ID,
+		       MOD_ID,
+		       OPEN_YN
+		FROM 120BPM_TOILET
+		<where>
+			<if test="gungu != null and gungu != ''">
+				and GUNGU = #{gungu}
+			</if>
+			<if test="searchWord != null and searchWord != ''">
+				AND NAME LIKE CONCAT('%', #{searchWord}, '%')
+			</if>
+		</where>
+		order by SEQ asc
+		limit #{index}, #{count};
+	</select>
+
+	<select id="getToiletCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT
+		    count(*) totalCount
+		FROM 120BPM_TOILET
+		<where>
+			<if test="gungu != null and gungu != ''">
+				and GUNGU = #{gungu}
+			</if>
+			<if test="searchWord != null and searchWord != ''">
+				AND NAME LIKE CONCAT('%', #{searchWord}, '%')
+			</if>
+		</where>
+	</select>
+
+	<select id="getToiletInfo" parameterType="java.util.HashMap" resultType="kr.co.daeddongadmin.toilet.domain.Toilet">
+		SELECT SEQ,
+			   NAME,
+			   LATITIUDE,
+			   LONGITUDE,
+			   ADDRESS,
+			   SI,
+			   GUNGU,
+			   FLOOR,
+			   OPEN_TIME,
+			   CLOSE_TIME,
+			   REG_DT,
+			   MOD_DT,
+			   MANAGE_AGENCY,
+			   MA_NUM,
+			   TOILET_TYPE,
+			   COUNT_MAN,
+			   COUNT_WOMEN,
+			   BABY_YN,
+			   UNUSUAL_YN,
+			   CCTV_YN,
+			   ALARM_YN,
+			   PWD_YN,
+			   PWD,
+			   ETC,
+			   REG_ID,
+			   MOD_ID,
+			   OPEN_YN
+		FROM 120BPM_TOILET
+		WHERE SEQ = #{seq};
+	</select>
+
+	<delete id="deleteToilet" parameterType="String">
+		delete from 120BPM_TOILET where SEQ = #{seq}
+	</delete>
+
+	<insert id="insertToilet" parameterType="java.util.HashMap">
+		INSERT INTO 120bpm_toilet_info
+		(name,
+		 latitiude,
+		 longitude,
+		 address,
+		 si,
+		 gungu,
+		 floor,
+		 openTime,
+		 closeTime,
+		 regDt,
+		 manageAgency,
+		 maNum,
+		 tolietType,
+		 countMan,
+		 countWomen,
+		 babyYn,
+		 unusualYn,
+		 cctvYn,
+		 alarmYn,
+		 pwdYn,
+		 pwd,
+		 etc,
+		 regId,
+		 openYn
+		 )
+		VALUES(
+				  #{name},
+				  #{latitiude},
+				  #{longitude},
+				  #{address},
+				  #{si},
+				  #{gungu},
+				  #{floor},
+				  #{openTime},
+				  #{closeTime},
+				  now(),
+				  #{manageAgency},
+				  #{maNum},
+				  #{tolietType},
+				  #{countMan},
+				  #{countWomen},
+				  #{babyYn},
+				  #{unusualYn},
+				  #{cctvYn},
+				  #{alarmYn},
+				  #{pwdYn},
+				  #{pwd},
+				  #{etc},
+				  #{regId},
+				  #{openYn}
+			  );
+	</insert>
+</mapper>
