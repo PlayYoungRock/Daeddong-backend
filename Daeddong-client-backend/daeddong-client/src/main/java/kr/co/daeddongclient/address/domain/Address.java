@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 @Data
 public class Address {
-    private String si;
-    private String gungu;
+    private String si ="";
+    private String gungu = "";
+
 }

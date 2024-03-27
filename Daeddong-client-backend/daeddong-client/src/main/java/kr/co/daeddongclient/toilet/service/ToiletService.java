@@ -1,17 +1,10 @@
 package kr.co.daeddongclient.toilet.service;
 
+import kr.co.daeddongclient.address.domain.AddressCoordinates;
 import kr.co.daeddongclient.toilet.domain.Toilet;
 import java.util.List;
-import java.util.Map;
 
 public interface ToiletService {
-    public List<Toilet> getToiletList(int index, int count, String gungu, String searchWord);
+    public List<Toilet> getToiletList(AddressCoordinates addressCoordinates);
 
-    int getToiletCount(String gungu, String searchWord);
-
-    Toilet getToiletInfo(String seq);
-
-    int deleteToilet(String seq);
-
-    void insertToilet(Map<String, Object> paramMap);
 }

@@ -1,5 +1,6 @@
 package kr.co.daeddongclient.toilet.repository;
 
+import kr.co.daeddongclient.address.domain.AddressCoordinates;
 import kr.co.daeddongclient.toilet.domain.Toilet;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -8,10 +9,5 @@ import java.util.Map;
 
 @Mapper
 public interface ToiletRepository {
-    List<Toilet> getToiletList(Map<String,Object> paramMap);
-    int getToiletCount(Map<String,Object> paramMap);
-    Toilet getToiletInfo(Map<String,Object> paramMap);
-    int deleteToilet(String seq);
-
-    void insertToilet(Map<String,Object> paramMap);
+    List<Toilet> getToiletList(AddressCoordinates addressCoordinates);
 }

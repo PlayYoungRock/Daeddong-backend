@@ -2,7 +2,6 @@ package kr.co.daeddongclient.common;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
