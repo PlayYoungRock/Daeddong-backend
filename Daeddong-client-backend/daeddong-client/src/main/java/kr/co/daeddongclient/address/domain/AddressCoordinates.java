@@ -41,7 +41,7 @@ public class AddressCoordinates {
         latMax = latitude + latDegreeChange();
     }
     public void lonMinValue(){
-        lonMin = longitude = lonDegreeChange();
+        lonMin = longitude - lonDegreeChange();
     }
     public void lonMaxValue(){
         lonMax = longitude + lonDegreeChange();
