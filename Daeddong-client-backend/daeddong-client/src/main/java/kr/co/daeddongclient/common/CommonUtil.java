@@ -2,6 +2,7 @@ package kr.co.daeddongclient.common;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -207,5 +208,78 @@ public class CommonUtil {
         }
         return toFilename;
     }
+
+    public static String getClientIp(HttpServletRequest request) {
+        String ip = request.getHeader("X-Forwarded-For");
+
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("WL-Proxy-Client-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_CLIENT_IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("X-Real-IP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("X-RealIP");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getHeader("REMOTE_ADDR");
+        }
+        if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+            ip = request.getRemoteAddr();
+        }
+
+        return ip;
+    }
+
+    public static String getClientReferer(HttpServletRequest request) {
+        String referer = request.getHeader("referer");
+
+        if (referer != null) {
+            if (referer.contains("google")) {
+                return "Google";
+            } else if (referer.contains("naver")) {
+                return "Naver";
+            } else if (referer.contains("daum")) {
+                return "Daum";
+            } else if (referer.contains("bing")) {
+                return "Bing";
+            } else {
+                return referer;
+            }
+        } else {
+            return "Direct";
+        }
+    }
+
+    public static String getDeviceType(HttpServletRequest request) {
+        String userAgent = request.getHeader("User-Agent");
+        if (userAgent != null) {
+            userAgent = userAgent.toLowerCase();
+            if (userAgent.contains("android")) {
+                return "Android";
+            } else if (userAgent.contains("iphone") || userAgent.contains("ipad") || userAgent.contains("ipod")) {
+                return "iOS";
+            } else if (userAgent.contains("windows")) {
+                return "Windows";
+            } else if (userAgent.contains("mac")) {
+                return "Mac";
+            } else if (userAgent.contains("linux")) {
+                return "Linux";
+            } else {
+                return "Other";
+            }
+        }
+        return "Unknown";
+    }
+
 
 }

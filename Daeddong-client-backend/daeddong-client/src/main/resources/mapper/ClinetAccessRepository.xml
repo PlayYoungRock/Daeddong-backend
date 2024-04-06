@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.daeddongclient.client.repository.ClientRepository">
+	<insert id="insertClientAccessLog">
+		INSERT INTO chugchug.`120BPM_ACCESS_LOG`
+			(CLIENT_IP, ACCESS_REFERER, DEVICE_TYPE, REG_DATE)
+		VALUES(#{clientIp}, #{referer}, #{deviceType}, now());
+	</insert>
+</mapper>
