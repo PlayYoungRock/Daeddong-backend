@@ -209,6 +209,26 @@ public class CommonUtil {
         return toFilename;
     }
 
+    public static String getClientReferer(HttpServletRequest request) {
+        String referer = request.getHeader("referer");
+
+        if (referer != null) {
+            if (referer.contains("google")) {
+                return "Google";
+            } else if (referer.contains("naver")) {
+                return "Naver";
+            } else if (referer.contains("daum")) {
+                return "Daum";
+            } else if (referer.contains("bing")) {
+                return "Bing";
+            } else {
+                return referer;
+            }
+        } else {
+            return "Direct";
+        }
+    }
+
     public static String getClientIp(HttpServletRequest request) {
         String ip = request.getHeader("X-Forwarded-For");
 
@@ -238,26 +258,6 @@ public class CommonUtil {
         }
 
         return ip;
-    }
-
-    public static String getClientReferer(HttpServletRequest request) {
-        String referer = request.getHeader("referer");
-
-        if (referer != null) {
-            if (referer.contains("google")) {
-                return "Google";
-            } else if (referer.contains("naver")) {
-                return "Naver";
-            } else if (referer.contains("daum")) {
-                return "Daum";
-            } else if (referer.contains("bing")) {
-                return "Bing";
-            } else {
-                return referer;
-            }
-        } else {
-            return "Direct";
-        }
     }
 
     public static String getDeviceType(HttpServletRequest request) {
