@@ -19,7 +19,13 @@ public class ToiletServiceImpl implements ToiletService {
 	private ToiletRepository toiletRepository;
 
 	@Override
-	public List<Toilet> getToiletList(AddressCoordinates addressCoordinates) {
+	public List<Toilet> getToiletList(double distance, double latitude, double longitude) {
+
+		AddressCoordinates addressCoordinates = new AddressCoordinates(distance,latitude,longitude);
+		addressCoordinates.latMaxValue();
+		addressCoordinates.latMinValue();
+		addressCoordinates.lonMaxValue();
+		addressCoordinates.lonMinValue();
 		if(toiletRepository.getToiletList(addressCoordinates).isEmpty()){
 			throw new IllegalArgumentException("데이터 없음");
 		}

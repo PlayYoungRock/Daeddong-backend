@@ -6,6 +6,7 @@ import kr.co.daeddongclient.toilet.service.ToiletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,15 +22,12 @@ public class ToiletController {
 
     @GetMapping("/toiletList")
     @ResponseBody
-    public Map<String,Object> getToiletList(@RequestBody AddressCoordinates addressCoordinates){
+    public Map<String,Object> getToiletList(@RequestParam(value="distance", defaultValue="")double distance,
+                                            @RequestParam(value="latitude", defaultValue="")double latitude,
+                                            @RequestParam(value="longitude", defaultValue="")double longitude){
         Map<String,Object> resultMap = new HashMap<String,Object>();
-        addressCoordinates.latMaxValue();
-        addressCoordinates.latMinValue();
-        addressCoordinates.lonMaxValue();
-        addressCoordinates.lonMinValue();
         try {
-            List<Toilet> toiletList = toiletService.getToiletList(addressCoordinates);
-
+            List<Toilet> toiletList = toiletService.getToiletList(distance,latitude,longitude);
             resultMap.put("resultCode", "0000");
             resultMap.put("toiletList", toiletList);
         }catch (IllegalArgumentException e){
