@@ -2,9 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.daeddongclient.address.repository.AddressRepository">
 	<select id="getSidoList" parameterType="java.util.HashMap" resultType="kr.co.daeddongclient.address.domain.Address">
-		select SI from 120BPM_TOILET group by SI order by SI asc;
+		select SI
+		from 120BPM_TOILET
+		where
+			si is not null
+			and SI != ""
+		group by SI
+		order by SI asc;
 	</select>
 	<select id="getSiGunguList" parameterType="java.util.HashMap" resultType="kr.co.daeddongclient.address.domain.Address">
-		select GUNGU from 120BPM_TOILET WHERE SI=#{sido} group by GUNGU order by GUNGU asc;
+		select GUNGU
+		from 120BPM_TOILET
+		WHERE
+		    SI=#{sido}
+		  and si is not null
+		  and SI != ""
+		group by GUNGU
+		order by GUNGU asc;
 	</select>
 </mapper>

@@ -4,7 +4,7 @@
 	<select id="getToiletList" parameterType="kr.co.daeddongclient.address.domain.AddressCoordinates" resultType="kr.co.daeddongclient.toilet.domain.Toilet">
 		SELECT SEQ,
 		       NAME,
-		       LATITIUDE,
+		       LATITUDE,
 		       LONGITUDE,
 		       ADDRESS,
 		       SI,
@@ -31,7 +31,7 @@
 		       OPEN_YN
 		FROM 120BPM_TOILET
 		where
-			LATITIUDE between #{latMin} and #{latMax}
+			LATITUDE between #{latMin} and #{latMax}
 			and LONGITUDE between #{lonMin} and #{lonMax}
 	</select>
 
